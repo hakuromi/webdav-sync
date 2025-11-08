@@ -1,0 +1,7 @@
+{
+    "localdir": "Your local directory",
+    "remoteurl": "AS EXAMPLE:https://app.koofr.net/dav/Koofr", 
+    "remotepath": "Path to your file on server",
+    "username": "Your login",
+    "password": "Your password"
+}
