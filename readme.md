@@ -26,7 +26,7 @@
 1. Создайте `config.json`:
 ```json
 {
-    "localdir": "C:\Backups\",
+    "localdir": "C:/Backups/",
     "remoteurl": "https://app.koofr.net/dav/Koofr",
     "remotepath": "/backups/1c-backup.dt",
     "username": "your_login",
