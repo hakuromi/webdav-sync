@@ -9,9 +9,14 @@ import (
 )
 
 func Upload(client *gowebdav.Client, localpath, remotepath string) error {
-	err := client.Remove(remotepath)
-	if err != nil {
-		return err
+	if remotepath == "" {
+		remotepath = "/Backup.rar"
+	}
+	if _, err := os.Stat(remotepath); err != nil {
+		err = client.Remove(remotepath)
+		if err != nil {
+			return err
+		}
 	}
 	file, err := os.Open(localpath) // получение указателя на открытый файл
 	if err != nil {
