@@ -6,6 +6,7 @@ import (
 )
 
 type Config struct {
+	FileCount  int    `json:"filecount"`
 	LocalDir   string `json:"localdir"`
 	RemoteURL  string `json:"remoteurl"`
 	RemotePath string `json:"remotepath"`

@@ -39,6 +39,10 @@ func LogError(text string, err error) { // Пишет в лог-файл оши�
 	}
 }
 
+func Log(text string) {
+	log.Println(text)
+}
+
 func LogFatal(text string, err error) { //Пишет в лог-файл фатальную ошибку
 	if err != nil {
 		log.Fatalf("Fatal error: %s. %v", text, err)

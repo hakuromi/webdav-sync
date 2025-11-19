@@ -16,6 +16,7 @@ import (
 )
 
 func main() {
+	start := time.Now()
 	logger.InitLogger()                                                 // запуск логгера
 	defer logger.Close()                                                // после завершения работы программы логгер закроет файл
 	fmt.Println("------Log file created at:", logger.LogPath, "------") /////////////////
@@ -61,16 +62,18 @@ func main() {
 	fmt.Println("------Connection to the server success!------") ///////////////////////
 	time.Sleep(2 * time.Second)                                  /////////////////////
 
-	latestFile, err := sync.LatestFile(conf.LocalDir)
+	latestFiles, err := sync.LatestFile(conf.LocalDir, conf.FileCount)
 	if err != nil {
 		logger.LogError("Failed to find latest file!", err)
 	}
 	fmt.Println("------Upload starting...------")
 
-	err = sync.Upload(client, latestFile, conf.RemotePath) // отправка файла на сервер
+	err = sync.Upload(client, latestFiles, conf.RemotePath) // отправка файла на сервер
 	if err != nil {
 		logger.LogFatal("Backup failed.", err)
 	}
-	fmt.Println("------Upload successful!------") ////////////////////////
-	time.Sleep(2 * time.Second)                   ///////////////////////
+	completeText := "------Upload successful! Time: " + (time.Since(start).String()) + "------"
+	fmt.Println(completeText) ////////////////////////
+	logger.Log(completeText)
+	time.Sleep(2 * time.Second) ///////////////////////
 }
