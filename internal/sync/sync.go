@@ -10,7 +10,7 @@ import (
 	"github.com/studio-b12/gowebdav"
 )
 
-type fileFromDir struct {
+type fileFromDir struct { // структура для сортировки файлов в директории
 	Path    string
 	ModTime time.Time
 }
@@ -23,7 +23,7 @@ func Upload(client *gowebdav.Client, localpaths []string, baseremotepath string)
 
 	for _, del := range filesForDelete { // в цикле проходимся по всем файлам из папки на сервере
 		deletePath := path.Join(baseremotepath, del.Name())
-		err := client.Remove(deletePath)
+		err := client.Remove(deletePath) // удаляем все файлы с сервера
 		if err != nil {
 			return err
 		}
@@ -60,8 +60,7 @@ func Upload(client *gowebdav.Client, localpaths []string, baseremotepath string)
 
 func LatestFile(dir string, count int) ([]string, error) {
 	var allFiles []fileFromDir
-	var latestPaths []string // путь к последнему созданному файлу для синхронизации
-	//var latestTime time.Time // время создания файла
+	var latestPaths []string // пути к последним созданным файлам для синхронизации
 
 	file, err := os.ReadDir(dir) // слайс всех папок внутри директории
 	if err != nil {
