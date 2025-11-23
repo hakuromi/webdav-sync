@@ -80,11 +80,11 @@ func LatestFile(dir string, count int) ([]string, error) {
 		})
 	}
 
-	sort.Slice(allFiles, func(i, j int) bool {
+	sort.Slice(allFiles, func(i, j int) bool { // сортируем сравнивая ModTime каждого экземпляра структуры
 		return allFiles[i].ModTime.After(allFiles[j].ModTime)
 	})
 
-	for i := 0; i < count; i++ {
+	for i := 0; i < count; i++ { // в зависимости от введенного в конфиг количества файлов, составляем итоговый слайс
 		latestPaths = append(latestPaths, allFiles[i].Path)
 	}
 
