@@ -10,7 +10,7 @@ import (
 	"github.com/studio-b12/gowebdav"
 )
 
-type fileFromDir struct {
+type fileFromDir struct { // структура для сортировки файлов в директории
 	Path    string
 	ModTime time.Time
 }
@@ -23,7 +23,7 @@ func Upload(client *gowebdav.Client, localpaths []string, baseremotepath string)
 
 	for _, del := range filesForDelete { // в цикле проходимся по всем файлам из папки на сервере
 		deletePath := path.Join(baseremotepath, del.Name())
-		err := client.Remove(deletePath)
+		err := client.Remove(deletePath) // удаляем все файлы с сервера
 		if err != nil {
 			return err
 		}
@@ -32,14 +32,7 @@ func Upload(client *gowebdav.Client, localpaths []string, baseremotepath string)
 	for _, lpath := range localpaths {
 		//remotepath := fmt.Sprintf("%s_%d.rar", baseremotepath, i+1) // путь для загрузки файла на сервер
 
-		remotepath := baseremotepath + "/" + filepath.Base(lpath)
-
-		if _, err := client.Stat(remotepath); err == nil { // проверка наличия файла на сервере
-			err = client.Remove(remotepath)
-			if err != nil {
-				return err
-			}
-		}
+		remotepath := baseremotepath + "/" + filepath.Base(lpath) //
 
 		file, err := os.Open(lpath) // получение указателя на открытый файл
 		if err != nil {
@@ -60,8 +53,7 @@ func Upload(client *gowebdav.Client, localpaths []string, baseremotepath string)
 
 func LatestFile(dir string, count int) ([]string, error) {
 	var allFiles []fileFromDir
-	var latestPaths []string // путь к последнему созданному файлу для синхронизации
-	//var latestTime time.Time // время создания файла
+	var latestPaths []string // пути к последним созданным файлам для синхронизации
 
 	file, err := os.ReadDir(dir) // слайс всех папок внутри директории
 	if err != nil {
@@ -81,11 +73,11 @@ func LatestFile(dir string, count int) ([]string, error) {
 		})
 	}
 
-	sort.Slice(allFiles, func(i, j int) bool {
+	sort.Slice(allFiles, func(i, j int) bool { // сортируем сравнивая ModTime каждого экземпляра структуры
 		return allFiles[i].ModTime.After(allFiles[j].ModTime)
 	})
 
-	for i := 0; i < count; i++ {
+	for i := 0; i < count; i++ { // в зависимости от введенного в конфиг количества файлов, составляем итоговый слайс
 		latestPaths = append(latestPaths, allFiles[i].Path)
 	}
 
