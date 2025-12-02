@@ -32,14 +32,7 @@ func Upload(client *gowebdav.Client, localpaths []string, baseremotepath string)
 	for _, lpath := range localpaths {
 		//remotepath := fmt.Sprintf("%s_%d.rar", baseremotepath, i+1) // путь для загрузки файла на сервер
 
-		remotepath := baseremotepath + "/" + filepath.Base(lpath)
-
-		if _, err := client.Stat(remotepath); err == nil { // проверка наличия файла на сервере
-			err = client.Remove(remotepath)
-			if err != nil {
-				return err
-			}
-		}
+		remotepath := baseremotepath + "/" + filepath.Base(lpath) //
 
 		file, err := os.Open(lpath) // получение указателя на открытый файл
 		if err != nil {
