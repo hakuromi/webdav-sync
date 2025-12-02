@@ -1,6 +1,6 @@
 config.json
+completed.md
 log.txt
 *.exe
 *.log
 .vscode/
-completed.md
