@@ -24,6 +24,7 @@
 ## Конфигурация
 
 1. Создайте `config.json`:
+Пример для Koofr:
 ```json
 {
     "localdir": "C:/Backups/",
@@ -35,6 +36,17 @@
 }
 ```
 
+Пример для Mail.ru:
+```json
+{
+        "localdir": "D:/Go Projects/Testyan",
+        "remoteurl": "https://webdav.cloud.mail.ru",
+        "remotepath": "/Backup",
+        "username": "nekitar2006@mail.ru",
+        "password": "HLVOlkeivlPVePxEns5A",
+        "filecount": 2
+}
+```
 ## Параметры конфигурации
 
 - `localdir` - Путь к локальной директории с бэкапами
