@@ -43,8 +43,8 @@
         "localdir": "D:/Go Projects/Testyan",
         "remoteurl": "https://webdav.cloud.mail.ru",
         "remotepath": "/Backup",
-        "username": "@mail.ru",
-        "password": "dfksjhsdf",
+        "username": "your_login",
+        "password": "your_password",
         "filecount": 2
 }
 ```
