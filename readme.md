@@ -40,7 +40,7 @@
 Пример для Mail.ru:
 ```json
 {
-        "localdir": "D:/Go Projects/Testyan",
+        "localdir": "D:/Backups/",
         "remoteurl": "https://webdav.cloud.mail.ru",
         "remotepath": "/Backup",
         "username": "your_login",
