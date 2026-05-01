@@ -4,3 +4,4 @@ log.txt
 *.exe
 *.log
 .vscode/
+.idea/

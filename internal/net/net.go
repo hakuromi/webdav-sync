@@ -24,8 +24,8 @@ func WaitForInternet() {
 		if err == nil {
 			return // если соединение есть, выходим из функции
 		}
-		logger.LogError("Internet is unavailable. Try synch again in 5 minutes.", nil)
-		fmt.Println("Internet is unavailable. Try synch again in 5 minutes.")
+		logger.LogError("Internet is unavailable. Try sync again in 5 minutes.", nil)
+		fmt.Println("Internet is unavailable. Try sync again in 5 minutes.")
 		time.Sleep(5 * time.Minute)
 	}
 }

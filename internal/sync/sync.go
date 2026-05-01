@@ -7,6 +7,7 @@ import (
 	"sort"
 	"time"
 
+	"github.com/hakuromi/webdav-sync/logger"
 	"github.com/studio-b12/gowebdav"
 )
 
@@ -45,7 +46,9 @@ func Upload(client *gowebdav.Client, localpaths []string, baseremotepath string)
 		if err != nil {
 			return err
 		}
-
+		logger.Log("Pause begin!")
+		time.Sleep(30 * time.Minute)
+		logger.Log("Continue...")
 	}
 
 	return nil
